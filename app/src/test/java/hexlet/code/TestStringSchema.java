@@ -1,14 +1,21 @@
 package hexlet.code;
 
+import hexlet.code.schemas.StringSchema;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestStringSchema {
+    private StringSchema schema;
+    @BeforeEach
+    public final void beforeEach() {
+        Validator v = new Validator();
+        schema = v.string();
+    }
     @Test
     public void testIsValid() {
-        Validator v = new Validator();
-        var schema = v.string();
         assertTrue(schema.isValid(""));
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid("string"));
@@ -17,8 +24,6 @@ public class TestStringSchema {
 
     @Test
     public void testContains() {
-        Validator v = new Validator();
-        var schema = v.string();
         schema.contains("good");
 
         var text = "good good good";
@@ -32,8 +37,6 @@ public class TestStringSchema {
 
     @Test
     public void testRequired() {
-        Validator v = new Validator();
-        var schema = v.string();
         schema.required();
         assertFalse(schema.isValid(""));
         assertFalse(schema.isValid(null));
@@ -41,8 +44,6 @@ public class TestStringSchema {
 
     @Test
     public void testMinLength() {
-        Validator v = new Validator();
-        var schema = v.string();
         schema.minLength(10);
 
         var text1 = "hello world!";

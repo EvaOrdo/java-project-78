@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public class StringSchema {
+public final class StringSchema {
     private String substring = "";
     private int minLength = 0;
 
@@ -23,8 +23,8 @@ public class StringSchema {
 
         var text = (String) obj;
 
-        if (text == null) {
-           return minLength > 0 ? false : true;
+        if (minLength > 0) {
+            return text != null;
         }
 
         if (text.length() < minLength || !text.contains(substring)) {
