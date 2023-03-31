@@ -8,6 +8,10 @@ public class BaseSchema {
     protected List<Predicate<Object>> rules = new ArrayList<>();
     protected boolean required = false;
 
+    /**
+     * @param obj should be checked for a type
+     * @return Boolean
+     */
     protected boolean typeCheck(Object obj) {
         return true;
     }
