@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 public class BaseSchema {
     protected List<Predicate<Object>> rules = new ArrayList<>();
     protected boolean required = false;
+
     protected boolean typeCheck(Object obj) {
         return true;
     }

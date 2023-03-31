@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema {
     @Override
-    protected boolean typeCheck(Object obj) {
+    public final boolean typeCheck(Object obj) {
         return obj instanceof Map<?, ?>;
     }
     public final MapSchema required() {
@@ -24,7 +24,7 @@ public class MapSchema extends BaseSchema {
 
     public void shape(Map<String, BaseSchema> schemas) {
         Predicate<Object> shape = object -> {
-            var map = (Map) object;
+            var map = (Map<?, ?>) object;
             for (var pair : schemas.entrySet()) {
                 var key = pair.getKey();
                 var value = pair.getValue();
