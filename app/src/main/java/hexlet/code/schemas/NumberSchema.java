@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema {
     @Override
-    public boolean typeCheck(Object obj) {
+    protected boolean typeCheck(Object obj) {
         return obj instanceof Integer;
     }
 

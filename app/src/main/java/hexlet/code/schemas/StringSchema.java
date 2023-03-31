@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public class StringSchema extends BaseSchema {
     @Override
-    public boolean typeCheck(Object obj) {
+    protected boolean typeCheck(Object obj) {
         return obj instanceof String;
     }
     public final StringSchema required() {

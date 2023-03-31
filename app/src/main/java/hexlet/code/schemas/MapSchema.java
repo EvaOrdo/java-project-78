@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema {
     @Override
-    public boolean typeCheck(Object obj) {
+    protected boolean typeCheck(Object obj) {
         return obj instanceof Map<?, ?>;
     }
     public final MapSchema required() {
