@@ -22,4 +22,20 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
+    public void shape(Map<String, BaseSchema> schemas) {
+        Predicate<Object> shape = object -> {
+            var map = (Map) object;
+            for (var pair : schemas.entrySet()) {
+                var key = pair.getKey();
+                var value = pair.getValue();
+                if (!value.isValid(map.get(key))) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        rules.add(shape);
+    }
+
 }
