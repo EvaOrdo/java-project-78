@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.function.Predicate;
 
-public class StringSchema extends BaseSchema {
+public final class StringSchema extends BaseSchema {
     @Override
     public final boolean typeCheck(Object obj) {
         return obj instanceof String;
