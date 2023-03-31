@@ -4,16 +4,16 @@ import java.util.function.Predicate;
 
 public final class NumberSchema extends BaseSchema {
     @Override
-    public final boolean typeCheck(Object obj) {
+    public boolean typeCheck(Object obj) {
         return obj instanceof Integer;
     }
 
-    public final NumberSchema required() {
+    public NumberSchema required() {
         required = true;
         return this;
     }
 
-    public final NumberSchema positive() {
+    public NumberSchema positive() {
         Predicate<Object> isPositive = obj -> {
             Integer num = (Integer) obj;
             return num > 0;
@@ -22,7 +22,7 @@ public final class NumberSchema extends BaseSchema {
         return this;
     }
 
-    public final NumberSchema range(Integer min, Integer max) {
+    public NumberSchema range(Integer min, Integer max) {
         Predicate<Object> isInRange = obj -> {
             Integer num = (Integer) obj;
             return  num >= min && num <= max;

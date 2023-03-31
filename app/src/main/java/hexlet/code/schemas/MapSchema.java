@@ -5,15 +5,15 @@ import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema {
     @Override
-    public final boolean typeCheck(Object obj) {
+    public boolean typeCheck(Object obj) {
         return obj instanceof Map<?, ?>;
     }
-    public final MapSchema required() {
+    public MapSchema required() {
         required = true;
         return this;
     }
 
-    public final MapSchema sizeof(Integer size) {
+    public MapSchema sizeof(Integer size) {
         Predicate<Object> isRightSize = obj -> {
             Map<?, ?> map = (Map<?, ?>) obj;
             return map.size() == size;

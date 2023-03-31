@@ -4,10 +4,10 @@ import java.util.function.Predicate;
 
 public final class StringSchema extends BaseSchema {
     @Override
-    public final boolean typeCheck(Object obj) {
+    public boolean typeCheck(Object obj) {
         return obj instanceof String;
     }
-    public final StringSchema required() {
+    public StringSchema required() {
         Predicate<Object> isRequired = obj -> {
             String str = (String) obj;
             return !str.isEmpty();
@@ -16,7 +16,7 @@ public final class StringSchema extends BaseSchema {
         required = true;
         return this;
     }
-    public final StringSchema contains(String substring) {
+    public StringSchema contains(String substring) {
         Predicate<Object> isContains = obj -> {
             String str = (String) obj;
             return str.contains(substring);
@@ -25,7 +25,7 @@ public final class StringSchema extends BaseSchema {
         return this;
     }
 
-    public final StringSchema minLength(Integer num) {
+    public StringSchema minLength(Integer num) {
         Predicate<Object> minLength = obj -> {
             String str = (String) obj;
             return str.length() >= num;
