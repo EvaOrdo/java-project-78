@@ -1,7 +1,5 @@
 package hexlet.code.schemas;
 
-import java.util.function.Predicate;
-
 public final class NumberSchema extends BaseSchema {
     @Override
     public boolean typeCheck(Object obj) {
@@ -14,20 +12,12 @@ public final class NumberSchema extends BaseSchema {
     }
 
     public NumberSchema positive() {
-        Predicate<Object> isPositive = obj -> {
-            Integer num = (Integer) obj;
-            return num > 0;
-        };
-        rules.add(isPositive);
+        rules.add(obj -> (Integer) obj > 0);
         return this;
     }
 
     public NumberSchema range(Integer min, Integer max) {
-        Predicate<Object> isInRange = obj -> {
-            Integer num = (Integer) obj;
-            return  num >= min && num <= max;
-        };
-        rules.add(isInRange);
+        rules.add(obj -> (Integer) obj >= min && (Integer) obj <= max);
         return this;
     }
 }

@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema {
     @Override
@@ -14,16 +13,12 @@ public final class MapSchema extends BaseSchema {
     }
 
     public MapSchema sizeof(Integer size) {
-        Predicate<Object> isRightSize = obj -> {
-            Map<?, ?> map = (Map<?, ?>) obj;
-            return map.size() == size;
-        };
-        rules.add(isRightSize);
+        rules.add(obj -> ((Map<?, ?>) obj).size() == size);
         return this;
     }
 
     public void shape(Map<String, BaseSchema> schemas) {
-        Predicate<Object> shape = object -> {
+        rules.add(object -> {
             var map = (Map<?, ?>) object;
             for (var pair : schemas.entrySet()) {
                 var key = pair.getKey();
@@ -33,9 +28,7 @@ public final class MapSchema extends BaseSchema {
                 }
             }
             return true;
-        };
-
-        rules.add(shape);
+        });
     }
 
 }
